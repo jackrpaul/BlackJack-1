@@ -1,11 +1,19 @@
 import java.util.Scanner;
+import java.util.*;
 public class Driver
 	{
+	
 	public static void main(String[] args)
+	
 		{
 			
 			tellUserWhatIsHappening();
-			generateCards();
+			Deck.generateCards();
+			GiveCards.giveTwoCards();
+			while(userPlaying()){
+				GiveCards.hitUser();
+			}
+			
 			
 			
 		}
@@ -19,12 +27,6 @@ public class Driver
 			System.out.println("Press Enter to play!");
 			String notNeeded = doesUserPlay.nextLine();
 		}
-
-	private static void generateCards()
-		{
-			// TODO Auto-generated method stub
-			
-		}
-
+	
 
 	}

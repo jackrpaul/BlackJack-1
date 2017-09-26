@@ -1,15 +1,25 @@
 
 public class Card
 	{
+		String rank;
 		String suit;
-		String color;
 		int value;
 
-		public Card(String s, String c, int v)
+		public Card(String s, String r, int v)
 			{
+				rank = r;
 				suit = s;
-				color = c;
 				value = v;
+			}
+
+		public String getRank()
+			{
+				return rank;
+			}
+
+		public void setRank(String rank)
+			{
+				this.rank = rank;
 			}
 
 		public String getSuit()
@@ -20,16 +30,6 @@ public class Card
 		public void setSuit(String suit)
 			{
 				this.suit = suit;
-			}
-
-		public String getColor()
-			{
-				return color;
-			}
-
-		public void setColor(String color)
-			{
-				this.color = color;
 			}
 
 		public int getValue()
