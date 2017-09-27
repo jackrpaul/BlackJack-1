@@ -67,11 +67,25 @@ public class Deck
 		
 public static void hitUser()
 	{
-		deck.get(0).getClass();
-		deck.get(0).getRank();
-		deck.get(0).getSuit();
-		deck.get(0).getValue();
+		Collections.shuffle(deck);
+		
+		int numberOfValue = deck.get(0).getValue();
+		Driver.totalValueUser = Driver.totalValueUser + numberOfValue;
+		
+		System.out.println("Card #" + Driver.numberOfHitsUser);
+		System.out.println("It is a " + deck.get(0).getSuit() + " of " + deck.get(0).getRank() + ".");
+		
+		Driver.numberOfHitsUser++;
 		
 	}
+public static void hitSelf()
+	{
+	Collections.shuffle(deck);
+	
+	int numberOfValue = deck.get(0).getValue();
+	Driver.totalValueSelf = Driver.totalValueSelf + numberOfValue;
+		
+	}
+
 
 }
