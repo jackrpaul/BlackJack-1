@@ -3,24 +3,29 @@ import java.util.*;
 public class Driver
 	{
 		public static int numberOfHitsUser = 1;
-		public static int totalValueSelf = 1;
+		public static int totalValueSelf = 0;
 		public static int totalValueUser = 0;
 	
 	public static void main(String[] args)
 	
 		{
 			
-			tellUserWhatIsHappening();
+			//tellUserWhatIsHappening();
 			Deck.generateCards();
-			GiveCards.giveTwoCards();
-			while(userPlaying() && underTwentyOne()){
+			//GiveCards.giveTwoCards();
+			Deck.hitSelf();
+			Deck.hitUser();
+			
+			do{
 				Deck.hitUser();
+				Deck.hitSelf();
 			}
+			while(userPlaying() && underTwentyOne());
 			checkCards();
 			
-			
-			
+			System.out.println( "Self is: " + totalValueSelf + " User is: " + totalValueUser);
 		}
+
 
 
 	private static void tellUserWhatIsHappening()
@@ -40,6 +45,9 @@ public class Driver
 			
 			if(yeeOrNee.equals("Yes") || yeeOrNee.equals("yes")){
 				return true;
+			}
+			else if(yeeOrNee.equals("No") || yeeOrNee.equals("no")){
+				return false;
 			}
 			else{
 				return false;
@@ -64,7 +72,7 @@ public class Driver
 			else if(((totalValueSelf > 22) && (totalValueUser < 22)) || (((totalValueUser  < 22) && (totalValueSelf < 22)) && (totalValueUser > totalValueSelf))) {
 				System.out.println("You Won!!!");
 			}
-			else if((totalValueSelf > 22) && (totalValueUser > 22)){
+			else if(((totalValueSelf > 22) && (totalValueUser > 22)) && (totalValueSelf == totalValueUser)){
 				System.out.println("Its a tie!");
 			}
 			

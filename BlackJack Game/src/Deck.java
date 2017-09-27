@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.*;
 
 
 
@@ -65,19 +66,33 @@ public class Deck
 				Collections.shuffle(deck);
 			}
 		
-public static void hitUser()
-	{
-		Collections.shuffle(deck);
-		
-		int numberOfValue = deck.get(0).getValue();
-		Driver.totalValueUser = Driver.totalValueUser + numberOfValue;
-		
-		System.out.println("Card #" + Driver.numberOfHitsUser);
-		System.out.println("It is a " + deck.get(0).getSuit() + " of " + deck.get(0).getRank() + ".");
-		
-		Driver.numberOfHitsUser++;
-		
-	}
+		public static void hitUser()
+			{
+				Collections.shuffle(deck);
+
+				int numberOfValue = deck.get(0).getValue();
+				
+				if (numberOfValue == 11)
+					{
+						Scanner aceOrOne = new Scanner(System.in);
+
+						System.out.println("You have an Ace of " + deck.get(0).getRank() + "!");
+						System.out.println("Do you want it to count as an 11 or a 1?");
+
+						int elevenOrOne = aceOrOne.nextInt();
+
+						Driver.totalValueUser = Driver.totalValueUser + elevenOrOne;
+					} else
+					{
+						Driver.totalValueUser = Driver.totalValueUser + numberOfValue;
+
+						System.out.println("Card #" + Driver.numberOfHitsUser);
+						System.out.println("It is a " + deck.get(0).getSuit() + " of " + deck.get(0).getRank() + ".");
+					}
+
+				Driver.numberOfHitsUser++;
+
+			}
 public static void hitSelf()
 	{
 	Collections.shuffle(deck);
