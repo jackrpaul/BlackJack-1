@@ -5,25 +5,26 @@ public class Driver
 		public static int numberOfHitsUser = 1;
 		public static int totalValueSelf = 0;
 		public static int totalValueUser = 0;
+		public static String easyOrHard = "null";
 	
 	public static void main(String[] args)
 	
 		{
 			
 			//tellUserWhatIsHappening();
+			//askEasyOrLessEasy();
 			Deck.generateCards();
-			//GiveCards.giveTwoCards();
-			Deck.hitSelf();
+			Deck.hitSelfFirst();
 			Deck.hitUser();
-			
 			do{
 				Deck.hitUser();
 				Deck.hitSelf();
 			}
-			while(userPlaying() && underTwentyOne());
+			while(underTwentyOne() && userPlaying());
+			AI.checkCardsSelf();
 			checkCards();
 			
-			System.out.println( "Self is: " + totalValueSelf + " User is: " + totalValueUser);
+			System.out.println( "Self is: " + totalValueSelf + " User is: " + totalValueUser); // this is for trouble shooting
 		}
 
 
@@ -36,6 +37,13 @@ public class Driver
 			System.out.println("Jack, Queen, and King are all worth 10.");
 			System.out.println("Press Enter to play!");
 			String notNeeded = doesUserPlay.nextLine();
+		}
+	private static void askEasyOrLessEasy()
+		{
+			Scanner eOrH = new Scanner(System.in);
+			System.out.println("Do you want to play easy or hard?");
+			easyOrHard = eOrH.nextLine();
+			
 		}
 	private static boolean userPlaying()
 		{
@@ -54,11 +62,18 @@ public class Driver
 			}
 			
 		}
-	
+
 	private static boolean underTwentyOne()
 		{
-			if((totalValueUser > 22) || (totalValueSelf > 22)){
-				return false;
+			if((totalValueUser > 22)){
+				checkAces();
+				if(totalValueUser > 22){
+					return false;
+				}
+				else{
+					return true;
+				}
+				
 			}
 			else{
 				return true;
@@ -66,17 +81,30 @@ public class Driver
 		}
 	private static void checkCards()
 		{
-			if(totalValueUser > 22){
-				System.out.println("You lost :(");
+			if(totalValueUser < 22){
+				if((totalValueUser < totalValueSelf) && (totalValueSelf < 22)){
+					System.out.println("You Lose :(");
+				}					
+				else if(totalValueUser > totalValueSelf){
+					System.out.println("You Win!!");
+				}
+				else if(totalValueUser == totalValueSelf){
+					System.out.println("It's a Tie!");
+				}
 			}
-			else if(((totalValueSelf > 22) && (totalValueUser < 22)) || (((totalValueUser  < 22) && (totalValueSelf < 22)) && (totalValueUser > totalValueSelf))) {
-				System.out.println("You Won!!!");
-			}
-			else if(((totalValueSelf > 22) && (totalValueUser > 22)) && (totalValueSelf == totalValueUser)){
-				System.out.println("Its a tie!");
+			else{
+				System.out.println("You Lose :(");
 			}
 			
 		}
-	
 
+	private static void checkAces()
+		{
+			if(Deck.numberOfAces > 0){
+				if(totalValueUser > 22){
+					totalValueUser = totalValueUser - 10;
+				}
+			}
+			
+		}
 	}

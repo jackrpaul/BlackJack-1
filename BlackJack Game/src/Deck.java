@@ -6,6 +6,7 @@ import java.util.*;
 
 public class Deck
 	{
+		public static int numberOfAces = 0;
 		static ArrayList <Card> deck = new ArrayList <Card> ( );
 		
 		public static void generateCards()
@@ -74,14 +75,11 @@ public class Deck
 				
 				if (numberOfValue == 11)
 					{
-						Scanner aceOrOne = new Scanner(System.in);
+						numberOfAces++;
+						Driver.totalValueUser = Driver.totalValueUser + numberOfValue;
 
-						System.out.println("You have an Ace of " + deck.get(0).getRank() + "!");
-						System.out.println("Do you want it to count as an 11 or a 1?");
-
-						int elevenOrOne = aceOrOne.nextInt();
-
-						Driver.totalValueUser = Driver.totalValueUser + elevenOrOne;
+						System.out.println("Card #" + Driver.numberOfHitsUser);
+						System.out.println("It is a " + deck.get(0).getSuit() + " of " + deck.get(0).getRank() + ".");
 					} else
 					{
 						Driver.totalValueUser = Driver.totalValueUser + numberOfValue;
@@ -89,7 +87,7 @@ public class Deck
 						System.out.println("Card #" + Driver.numberOfHitsUser);
 						System.out.println("It is a " + deck.get(0).getSuit() + " of " + deck.get(0).getRank() + ".");
 					}
-
+				System.out.println();
 				Driver.numberOfHitsUser++;
 
 			}
@@ -100,6 +98,14 @@ public static void hitSelf()
 	int numberOfValue = deck.get(0).getValue();
 	Driver.totalValueSelf = Driver.totalValueSelf + numberOfValue;
 		
+	}
+
+public static void hitSelfFirst()
+	{
+		hitSelf();
+		
+		System.out.println("The Dealer's first Card is: " + deck.get(0).getSuit() + " of " + deck.get(0).getRank());
+		System.out.println();
 	}
 
 
