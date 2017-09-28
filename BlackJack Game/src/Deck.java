@@ -79,14 +79,14 @@ public class Deck
 						numberOfAces++;
 						Driver.totalValueUser = Driver.totalValueUser + numberOfValue;
 
-						System.out.println("Card #" + Driver.numberOfHitsUser);
-						System.out.println("It is a " + deck.get(0).getSuit() + " of " + deck.get(0).getRank() + ".");
+						//System.out.println("Card #" + Driver.numberOfHitsUser);
+						System.out.println("You were dealt a " + deck.get(0).getSuit() + " of " + deck.get(0).getRank() + ".");
 					} else
 					{
 						Driver.totalValueUser = Driver.totalValueUser + numberOfValue;
 
-						System.out.println("Card #" + Driver.numberOfHitsUser);
-						System.out.println("It is a " + deck.get(0).getSuit() + " of " + deck.get(0).getRank() + ".");
+						//System.out.println("Card #" + Driver.numberOfHitsUser);
+						System.out.println("You were dealt a " + deck.get(0).getSuit() + " of " + deck.get(0).getRank() + ".");
 					}
 				System.out.println();
 				Driver.numberOfHitsUser++;
@@ -113,8 +113,33 @@ public static void hitSelfFirst()
 	{
 		hitSelf();
 		
-		System.out.println("The Dealer's first Card is: " + deck.get(0).getSuit() + " of " + deck.get(0).getRank());
+		System.out.println("The Dealer is showing a " + deck.get(0).getSuit() + " of " + deck.get(0).getRank() + ".");
 		System.out.println();
+	}
+
+public static void hitUserFirst()
+	{
+		Collections.shuffle(deck);
+		
+		int numberOfValue = deck.get(0).getValue();
+		int numberOfSecondValue = deck.get(1).getValue();
+		
+		if((numberOfValue == 11) && (numberOfSecondValue == 11)){
+			numberOfAces = numberOfAces + 2;
+			System.out.println("You were dealt a " + deck.get(0).getSuit() + " of " + deck.get(0).getRank() + " and a " + deck.get(1).getSuit() + " of " + deck.get(1).getRank() + ".");
+			Driver.totalValueUser = Driver.totalValueUser + numberOfValue;
+		}
+		else if((numberOfValue == 11) || (numberOfSecondValue == 11)){
+			numberOfAces++;
+			System.out.println("You were dealt a " + deck.get(0).getSuit() + " of " + deck.get(0).getRank() + " and a " + deck.get(1).getSuit() + " of " + deck.get(1).getRank() + ".");
+			Driver.totalValueUser = Driver.totalValueUser + numberOfValue;
+		}
+		else{
+			System.out.println("You were dealt a " + deck.get(0).getSuit() + " of " + deck.get(0).getRank() + " and a " + deck.get(1).getSuit() + " of " + deck.get(1).getRank() + ".");
+			Driver.totalValueUser = Driver.totalValueUser + numberOfValue;
+		}
+		System.out.println();
+		
 	}
 
 

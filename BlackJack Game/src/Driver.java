@@ -15,12 +15,14 @@ public class Driver
 			//askEasyOrLessEasy();
 			Deck.generateCards();
 			Deck.hitSelfFirst();
-			Deck.hitUser();
-			do{
-				Deck.hitUser();
-				Deck.hitSelf();
-			}
-			while(underTwentyOne() && userPlaying());
+			Deck.hitSelf();
+			Deck.hitUserFirst();
+			while(underTwentyOne() && userPlaying())
+				{
+					System.out.println();
+					Deck.hitUser();
+					Deck.hitSelf();
+				}
 			AI.checkCardsSelf();
 			checkCards();
 			
@@ -35,6 +37,7 @@ public class Driver
 			System.out.println("Were going to play a game of BlackJack.");
 			System.out.println("The object of this game is to get the closest to 21 without going over.");
 			System.out.println("Jack, Queen, and King are all worth 10.");
+			System.out.println("The Aces will change for you.");
 			System.out.println("Press Enter to play!");
 			String notNeeded = doesUserPlay.nextLine();
 		}
