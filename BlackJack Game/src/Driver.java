@@ -91,6 +91,9 @@ public class Driver
 				else if(totalValueUser == totalValueSelf){
 					System.out.println("It's a Tie!");
 				}
+				else{
+					System.out.println("Your Win!!");
+				}
 			}
 			else{
 				System.out.println("You Lose :(");
@@ -103,6 +106,13 @@ public class Driver
 			if(Deck.numberOfAces > 0){
 				if(totalValueUser > 22){
 					totalValueUser = totalValueUser - 10;
+					Deck.numberOfAces--;
+				}
+			}
+			if(Deck.numberOfAcesSelf > 0){
+				if(totalValueSelf > 22){
+					totalValueSelf = totalValueSelf - 10;
+					Deck.numberOfAcesSelf--;
 				}
 			}
 			

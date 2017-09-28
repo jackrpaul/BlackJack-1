@@ -7,6 +7,7 @@ import java.util.*;
 public class Deck
 	{
 		public static int numberOfAces = 0;
+		public static int numberOfAcesSelf = 0;
 		static ArrayList <Card> deck = new ArrayList <Card> ( );
 		
 		public static void generateCards()
@@ -96,7 +97,15 @@ public static void hitSelf()
 	Collections.shuffle(deck);
 	
 	int numberOfValue = deck.get(0).getValue();
-	Driver.totalValueSelf = Driver.totalValueSelf + numberOfValue;
+	
+	if (numberOfValue == 11)
+		{
+			numberOfAcesSelf++;
+			Driver.totalValueSelf = Driver.totalValueSelf + numberOfValue;
+		} else
+		{
+			Driver.totalValueSelf = Driver.totalValueSelf + numberOfValue;
+		}
 		
 	}
 
