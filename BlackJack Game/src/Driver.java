@@ -2,18 +2,21 @@ import java.util.Scanner;
 import java.util.*;
 public class Driver
 	{
-		public static int numberOfHitsUser = 1;
 		public static int totalValueSelf = 0;
 		public static int totalValueUser = 0;
-		public static String easyOrHard = "null";
-	
+		public static int ballance = 0;
+				
 	public static void main(String[] args)
 	
+		{	
+			tellUserWhatIsHappening();
+			theCode();	
+		}
+
+	private static void theCode()
 		{
-			
-			//tellUserWhatIsHappening();
-			//askEasyOrLessEasy();
 			Deck.generateCards();
+			Betting.tellUserWhatIsHappening();
 			Deck.hitSelfFirst();
 			Deck.hitSelf();
 			Deck.hitUserFirst();
@@ -25,12 +28,9 @@ public class Driver
 				}
 			AI.checkCardsSelf();
 			checkCards();
-			
-			System.out.println( "Self is: " + totalValueSelf + " User is: " + totalValueUser); // this is for trouble shooting
+			askPlayAgain();
 		}
-
-
-
+	
 	private static void tellUserWhatIsHappening()
 		{
 			Scanner doesUserPlay = new Scanner(System.in);
@@ -41,13 +41,7 @@ public class Driver
 			System.out.println("Press Enter to play!");
 			String notNeeded = doesUserPlay.nextLine();
 		}
-	private static void askEasyOrLessEasy()
-		{
-			Scanner eOrH = new Scanner(System.in);
-			System.out.println("Do you want to play easy or hard?");
-			easyOrHard = eOrH.nextLine();
-			
-		}
+	
 	private static boolean userPlaying()
 		{
 			Scanner yesOrNo = new Scanner(System.in);
@@ -82,24 +76,35 @@ public class Driver
 				return true;
 			}
 		}
+	
 	private static void checkCards()
 		{
 			if(totalValueUser < 22){
 				if((totalValueUser < totalValueSelf) && (totalValueSelf < 22)){
-					System.out.println("You Lose :(");
+					System.out.println();
+					ballance = ballance;
+					System.out.println("You Lose :( Your new ballance is: " + ballance);
 				}					
 				else if(totalValueUser > totalValueSelf){
-					System.out.println("You Win!!");
+					System.out.println();
+					ballance += Betting.amountBetByUser;
+					System.out.println("You Win!! Your new ballance is: " + ballance);
 				}
 				else if(totalValueUser == totalValueSelf){
-					System.out.println("It's a Tie!");
+					System.out.println();
+					ballance += Betting.amountBetByUser;
+					System.out.println("It's a Tie! Your new ballance is: " + ballance);
 				}
 				else{
-					System.out.println("Your Win!!");
+					System.out.println();
+					ballance += Betting.amountBetByUser;
+					System.out.println("You Win!! Your new ballance is: " + ballance);
 				}
 			}
 			else{
-				System.out.println("You Lose :(");
+				System.out.println();
+				ballance = ballance;
+				System.out.println("You Lose :( Your new ballance is: " + ballance);
 			}
 			
 		}
@@ -117,6 +122,32 @@ public class Driver
 					totalValueSelf = totalValueSelf - 10;
 					Deck.numberOfAcesSelf--;
 				}
+			}
+			
+		}
+
+	private static void askPlayAgain()
+		{
+			System.out.println();
+			Scanner playAgain = new Scanner(System.in);
+			System.out.println("Would you like to play again?");
+			String playAgainAnswer = playAgain.nextLine();
+			
+			if(playAgainAnswer.equals("yes") || playAgainAnswer.equals("Yes")){
+				System.out.println("Awesome!");
+				totalValueSelf = 0;
+				totalValueUser = 0;
+				System.out.println();
+				theCode();
+			}
+			else if(playAgainAnswer.equals("no") || playAgainAnswer.equals("No")){
+				System.out.println();
+				System.out.println("Ok");
+			}
+			else{
+				System.out.println();
+				System.out.println("Please enter either Yes or No.");
+				askPlayAgain();
 			}
 			
 		}

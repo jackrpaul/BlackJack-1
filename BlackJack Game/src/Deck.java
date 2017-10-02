@@ -79,20 +79,18 @@ public class Deck
 						numberOfAces++;
 						Driver.totalValueUser = Driver.totalValueUser + numberOfValue;
 
-						//System.out.println("Card #" + Driver.numberOfHitsUser);
 						System.out.println("You were dealt a " + deck.get(0).getSuit() + " of " + deck.get(0).getRank() + ".");
 					} else
 					{
 						Driver.totalValueUser = Driver.totalValueUser + numberOfValue;
 
-						//System.out.println("Card #" + Driver.numberOfHitsUser);
+						
 						System.out.println("You were dealt a " + deck.get(0).getSuit() + " of " + deck.get(0).getRank() + ".");
 					}
 				System.out.println();
-				Driver.numberOfHitsUser++;
 
 			}
-public static void hitSelf()
+		public static void hitSelf()
 	{
 	Collections.shuffle(deck);
 	
@@ -109,7 +107,7 @@ public static void hitSelf()
 		
 	}
 
-public static void hitSelfFirst()
+		public static void hitSelfFirst()
 	{
 		hitSelf();
 		
@@ -117,7 +115,7 @@ public static void hitSelfFirst()
 		System.out.println();
 	}
 
-public static void hitUserFirst()
+		public static void hitUserFirst()
 	{
 		Collections.shuffle(deck);
 		
@@ -127,16 +125,16 @@ public static void hitUserFirst()
 		if((numberOfValue == 11) && (numberOfSecondValue == 11)){
 			numberOfAces = numberOfAces + 2;
 			System.out.println("You were dealt a " + deck.get(0).getSuit() + " of " + deck.get(0).getRank() + " and a " + deck.get(1).getSuit() + " of " + deck.get(1).getRank() + ".");
-			Driver.totalValueUser = Driver.totalValueUser + numberOfValue;
+			Driver.totalValueUser += (numberOfValue + numberOfSecondValue);
 		}
 		else if((numberOfValue == 11) || (numberOfSecondValue == 11)){
 			numberOfAces++;
 			System.out.println("You were dealt a " + deck.get(0).getSuit() + " of " + deck.get(0).getRank() + " and a " + deck.get(1).getSuit() + " of " + deck.get(1).getRank() + ".");
-			Driver.totalValueUser = Driver.totalValueUser + numberOfValue;
+			Driver.totalValueUser += (numberOfValue + numberOfSecondValue);
 		}
 		else{
 			System.out.println("You were dealt a " + deck.get(0).getSuit() + " of " + deck.get(0).getRank() + " and a " + deck.get(1).getSuit() + " of " + deck.get(1).getRank() + ".");
-			Driver.totalValueUser = Driver.totalValueUser + numberOfValue;
+			Driver.totalValueUser += (numberOfValue + numberOfSecondValue);
 		}
 		System.out.println();
 		
