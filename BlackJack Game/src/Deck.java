@@ -2,13 +2,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.*;
 
-// hello from home
 
 public class Deck
 	{
 		public static int numberOfAces = 0;
 		public static int numberOfAcesSelf = 0;
 		static ArrayList <Card> deck = new ArrayList <Card> ( );
+		static ArrayList <String> selfRank = new ArrayList <String> ( );
+		static ArrayList <String> selfSuit = new ArrayList <String> ( );
 		
 		public static void generateCards()
 			{
@@ -96,6 +97,10 @@ public class Deck
 	
 	int numberOfValue = deck.get(0).getValue();
 	
+	selfRank.add(deck.get(0).getRank());
+	selfSuit.add(deck.get(0).getSuit());
+	
+	
 	if (numberOfValue == 11)
 		{
 			numberOfAcesSelf++;
@@ -112,6 +117,7 @@ public class Deck
 		hitSelf();
 		
 		System.out.println("The Dealer is showing a " + deck.get(0).getSuit() + " of " + deck.get(0).getRank() + ".");
+		
 		System.out.println();
 	}
 

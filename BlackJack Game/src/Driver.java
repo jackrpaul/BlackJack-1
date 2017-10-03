@@ -1,10 +1,9 @@
-import java.util.Scanner;
 import java.util.*;
 public class Driver
 	{
 		public static int totalValueSelf = 0;
 		public static int totalValueUser = 0;
-		public static int ballance = 0;
+		public static int ballance = 100;
 				
 	public static void main(String[] args)
 	
@@ -45,13 +44,13 @@ public class Driver
 	private static boolean userPlaying()
 		{
 			Scanner yesOrNo = new Scanner(System.in);
-			System.out.println("Do you want a hit?");
-			String yeeOrNee = yesOrNo.nextLine();
+			System.out.println("Do you want a hit? \n Enter 1 for yes \n Enter 2 for no");
+			int yeeOrNee = yesOrNo.nextInt();
 			
-			if(yeeOrNee.equals("Yes") || yeeOrNee.equals("yes")){
+			if(yeeOrNee == 1){
 				return true;
 			}
-			else if(yeeOrNee.equals("No") || yeeOrNee.equals("no")){
+			else if(yeeOrNee ==2){
 				return false;
 			}
 			else{
@@ -83,28 +82,48 @@ public class Driver
 				if((totalValueUser < totalValueSelf) && (totalValueSelf < 22)){
 					System.out.println();
 					ballance = ballance;
-					System.out.println("You Lose :( Your new ballance is: " + ballance);
+					System.out.println("You Lose :( Your new balance is: $" + ballance);
+					System.out.println("The dealer had: ");
+					for(int i = 0 ; i < Deck.selfRank.size(); i++){
+						System.out.println("A " + Deck.selfSuit.get(i) + " of " + Deck.selfRank.get(i));
+					}
 				}					
 				else if(totalValueUser > totalValueSelf){
 					System.out.println();
 					ballance += Betting.amountBetByUser;
-					System.out.println("You Win!! Your new ballance is: " + ballance);
+					System.out.println("You Win!! Your new balance is: $" + ballance);
+					System.out.println("The dealer had: ");
+					for(int i = 0 ; i < Deck.selfRank.size(); i++){
+						System.out.println("A " + Deck.selfSuit.get(i) + " of " + Deck.selfRank.get(i));
+					}
 				}
 				else if(totalValueUser == totalValueSelf){
 					System.out.println();
 					ballance += Betting.amountBetByUser;
-					System.out.println("It's a Tie! Your new ballance is: " + ballance);
+					System.out.println("It's a Tie! Your new balance is: $" + ballance);
+					System.out.println("The dealer had: ");
+					for(int i = 0 ; i < Deck.selfRank.size(); i++){
+						System.out.println("A " + Deck.selfSuit.get(i) + " of " + Deck.selfRank.get(i));
+					}
 				}
 				else{
 					System.out.println();
 					ballance += Betting.amountBetByUser;
-					System.out.println("You Win!! Your new ballance is: " + ballance);
+					System.out.println("You Win!! Your new balance is: $" + ballance);
+					System.out.println("The dealer had: ");
+					for(int i = 0 ; i < Deck.selfRank.size(); i++){
+						System.out.println("A " + Deck.selfSuit.get(i) + " of " + Deck.selfRank.get(i));
+					}
 				}
 			}
 			else{
 				System.out.println();
 				ballance = ballance;
-				System.out.println("You Lose :( Your new ballance is: " + ballance);
+				System.out.println("You Lose :( Your new balance is: $" + ballance);
+				System.out.println("The dealer had: ");
+				for(int i = 0 ; i < Deck.selfRank.size(); i++){
+					System.out.println("A " + Deck.selfSuit.get(i) + " of " + Deck.selfRank.get(i));
+				}
 			}
 			
 		}

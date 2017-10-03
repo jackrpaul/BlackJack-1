@@ -9,7 +9,7 @@ public class AI
 		
 		if(selfValue < 17){
 			Deck.hitSelf();
-		}
+		};
 		};
 			
 	}
