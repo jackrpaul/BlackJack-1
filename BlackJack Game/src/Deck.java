@@ -6,7 +6,8 @@ import java.util.*;
 public class Deck
 	{
 		public static int numberOfAces = 0;
-		public static int numberOfAcesSelf = 0;
+		//changed numberOfAcesSelf to numberOfAcesCPU to avoid confusion
+		public static int numberOfAcesCPU = 0;
 		static ArrayList <Card> deck = new ArrayList <Card> ( );
 		static ArrayList <String> selfRank = new ArrayList <String> ( );
 		static ArrayList <String> selfSuit = new ArrayList <String> ( );
@@ -22,7 +23,7 @@ public class Deck
 				deck.add(new Card("Eight" , "Clubs" , 8));
 				deck.add(new Card("Nine" , "Clubs" , 9));
 				deck.add(new Card("Ten" , "Clubs" , 10));
-				deck.add(new Card("Qween" , "Clubs" , 10));
+				deck.add(new Card("Queen" , "Clubs" , 10));
 				deck.add(new Card("King" , "Clubs" , 10));
 				deck.add(new Card("Jack" , "Clubs" , 10));
 				deck.add(new Card("Ace" , "Clubs" , 11));
@@ -35,7 +36,7 @@ public class Deck
 				deck.add(new Card("Eight" , "Hearts" , 8));
 				deck.add(new Card("Nine" , "Hearts" , 9));
 				deck.add(new Card("Ten" , "Hearts" , 10));
-				deck.add(new Card("Qween" , "Hearts" , 10));
+				deck.add(new Card("Queen" , "Hearts" , 10));
 				deck.add(new Card("King" , "Hearts" , 10));
 				deck.add(new Card("Jack" , "Hearts" , 10));
 				deck.add(new Card("Ace" , "Hearts" , 11));
@@ -48,7 +49,7 @@ public class Deck
 				deck.add(new Card("Eight" , "Spades" , 8));
 				deck.add(new Card("Nine" , "Spades" , 9));
 				deck.add(new Card("Ten" , "Spades" , 10));
-				deck.add(new Card("Qween" , "Spades" , 10));
+				deck.add(new Card("Queen" , "Spades" , 10));
 				deck.add(new Card("King" , "Spades" , 10));
 				deck.add(new Card("Jack" , "Spades" , 10));
 				deck.add(new Card("Ace" , "Spades" , 11));
@@ -61,7 +62,7 @@ public class Deck
 				deck.add(new Card("Eight" , "Diamonds" , 8));
 				deck.add(new Card("Nine" , "Diamonds" , 9));
 				deck.add(new Card("Ten" , "Diamonds" , 10));
-				deck.add(new Card("Qween" , "Diamonds" , 10));
+				deck.add(new Card("Queen" , "Diamonds" , 10));
 				deck.add(new Card("King" , "Diamonds" , 10));
 				deck.add(new Card("Jack" , "Diamonds" , 10));
 				deck.add(new Card("Ace" , "Diamonds" , 11));
@@ -81,7 +82,8 @@ public class Deck
 						Driver.totalValueUser = Driver.totalValueUser + numberOfValue;
 
 						System.out.println("You were dealt a " + deck.get(0).getSuit() + " of " + deck.get(0).getRank() + ".");
-					} else
+					} 
+				else
 					{
 						Driver.totalValueUser = Driver.totalValueUser + numberOfValue;
 
@@ -91,8 +93,9 @@ public class Deck
 				System.out.println();
 
 			}
-		public static void hitSelf()
-	{
+		//changed hitSelf to hitCPU to avoid confusion
+		public static void hitCPU()
+			{
 	Collections.shuffle(deck);
 	
 	int numberOfValue = deck.get(0).getValue();
@@ -101,20 +104,21 @@ public class Deck
 	selfSuit.add(deck.get(0).getSuit());
 	
 	
-	if (numberOfValue == 11)
-		{
-			numberOfAcesSelf++;
-			Driver.totalValueSelf = Driver.totalValueSelf + numberOfValue;
-		} else
-		{
-			Driver.totalValueSelf = Driver.totalValueSelf + numberOfValue;
-		}
+		if (numberOfValue == 11)
+			{
+				numberOfAcesCPU++;
+				Driver.totalValueCPU = Driver.totalValueCPU + numberOfValue;
+			} 
+	else
+				{
+					Driver.totalValueCPU = Driver.totalValueCPU + numberOfValue;
+				}
 		
-	}
+			}
 
 		public static void hitSelfFirst()
 	{
-		hitSelf();
+		hitCPU();
 		
 		System.out.println("The Dealer is showing a " + deck.get(0).getSuit() + " of " + deck.get(0).getRank() + ".");
 		
@@ -128,20 +132,30 @@ public class Deck
 		int numberOfValue = deck.get(0).getValue();
 		int numberOfSecondValue = deck.get(1).getValue();
 		
-		if((numberOfValue == 11) && (numberOfSecondValue == 11)){
+		if((numberOfValue == 11) && (numberOfSecondValue == 11))
+		{
 			numberOfAces = numberOfAces + 2;
 			System.out.println("You were dealt a " + deck.get(0).getSuit() + " of " + deck.get(0).getRank() + " and a " + deck.get(1).getSuit() + " of " + deck.get(1).getRank() + ".");
 			Driver.totalValueUser += (numberOfValue + numberOfSecondValue);
+			//added remove statements to lessen deck and up strategic value of the game
+			deck.remove(deck.get(0));
+			deck.remove(deck.get(1));
 		}
-		else if((numberOfValue == 11) || (numberOfSecondValue == 11)){
+		else if((numberOfValue == 11) || (numberOfSecondValue == 11))
+		{
 			numberOfAces++;
 			System.out.println("You were dealt a " + deck.get(0).getSuit() + " of " + deck.get(0).getRank() + " and a " + deck.get(1).getSuit() + " of " + deck.get(1).getRank() + ".");
 			Driver.totalValueUser += (numberOfValue + numberOfSecondValue);
+			deck.remove(deck.get(0));
+			deck.remove(deck.get(1));
 		}
-		else{
+		else
+			{
 			System.out.println("You were dealt a " + deck.get(0).getSuit() + " of " + deck.get(0).getRank() + " and a " + deck.get(1).getSuit() + " of " + deck.get(1).getRank() + ".");
 			Driver.totalValueUser += (numberOfValue + numberOfSecondValue);
-		}
+			deck.remove(deck.get(0));
+			deck.remove(deck.get(1));
+			}
 		System.out.println();
 		
 	}

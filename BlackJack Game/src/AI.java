@@ -1,15 +1,18 @@
 
 public class AI
 	{
-		static int selfValue = 0;
+		//changed SelfValue to cpuValue to avoid confusion
+		static int cpuValue = 0;
 	
 		public static void checkCardsSelf()
 		{
-		selfValue = Driver.totalValueSelf;
 		
-		if(selfValue < 17){
-			Deck.hitSelf();
-		};
-		};
+		cpuValue = Driver.totalValueCPU;
+		
+		if(cpuValue < 17)
+			{
+			Deck.hitCPU();
+			}
+		}
 			
 	}
